@@ -28,3 +28,9 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
         create copies and rename them to the names listed at step 3
 
 4. Run the .exe
+
+
+# CHANGELOG
+v0.0.2a:
+-Fixed up backup script
+-Attempt on fixing error 480
