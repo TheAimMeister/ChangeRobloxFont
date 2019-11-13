@@ -32,5 +32,5 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 # CHANGELOG
 v0.0.2a:
--Fixed up backup script
--Attempt on fixing error 480
+   - Fixed up backup script
+   - Attempt on fixing error 480
