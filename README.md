@@ -3,7 +3,13 @@ A little script that I wrote in python 3.7.4 that runs a code that replaces the 
 I mainly made it for Phantom Forces, but you can use every font used within the roblox directory.
 Alternatively, you can also change it for Phantom Forces first, as the program will create a backup of Roblox's original font
 
-How to use:
+# Current Errors
+Error code 480 (description unknown at this point, halting a fix.)
+
+# Download the correct version at:
+https://github.com/TheAimMeister/ChangeRobloxFont/releases
+
+# How to use:
 1. Download a font
 
 2. Place the font(s) and the .exe in a directory
