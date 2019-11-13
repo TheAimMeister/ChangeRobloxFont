@@ -1,6 +1,7 @@
 import os, shutil, sys, time
 from os import listdir, walk
 
+#Just to prevent it from running twice
 pid = str(os.getpid())
 pidfile = "ChangeFont.pid"
 if os.path.isfile(pidfile):
@@ -10,6 +11,7 @@ if os.path.isfile(pidfile):
 
 open(pidfile, 'w').write(pid)
 
+#Actual code
 try:
     def CustomFontDict():
         onlyfiles = [f for f in listdir(os.getcwd()) if f.endswith('.ttf')]
