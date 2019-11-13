@@ -1,4 +1,4 @@
-import os, shutil, sys, time, psutil
+import os, shutil, sys, time
 from os import listdir, walk
 
 pid = str(os.getpid())
