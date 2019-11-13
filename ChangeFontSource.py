@@ -16,7 +16,7 @@ try:
         return onlyfiles
 
     def GetRobloxVersion():
-        rootDict = f'C:/Users/{os.getlogin()}/AppData/Local/Roblox/Versions'
+        rootDict = f'{os.getenv("LOCALAPPDATA")}/Roblox/Versions'
         for (dirpath, dirnames, filenames) in walk(rootDict):
             if "RobloxPlayerBeta.exe" in filenames:
                 rootDict = dirpath
