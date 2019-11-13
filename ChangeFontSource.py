@@ -1,7 +1,6 @@
 import os, shutil, sys, time
 from os import listdir, walk
 
-#Just to prevent it from running twice
 pid = str(os.getpid())
 pidfile = "ChangeFont.pid"
 if os.path.isfile(pidfile):
@@ -11,7 +10,6 @@ if os.path.isfile(pidfile):
 
 open(pidfile, 'w').write(pid)
 
-#Actual code
 try:
     def CustomFontDict():
         onlyfiles = [f for f in listdir(os.getcwd()) if f.endswith('.ttf')]
@@ -33,6 +31,9 @@ try:
         if not os.path.isdir(f'{os.getcwd()}/OriginalRobloxFont.bak'):
             os.mkdir('OriginalRobloxFont.bak')
         for i in fonts:
+            if i in listdir(f'{os.getcwd()}/OriginalRobloxFont.bak'):
+                print(f'Skipping {i}, already backed up.')
+                continue
             print(f'Creating backup of font: {i}')
             shutil.copy(f'{rootDict}/{i}', f'{os.getcwd()}/OriginalRobloxFont.bak')
         return fonts, rootDict
