@@ -31,6 +31,9 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 
 # CHANGELOG
+v0.0.2b:
+-Cleans up fonts from the main folder and copy/moves them to CustomFont.bak
+
 v0.0.2a:
    - Fixed up backup script
    - Attempt on fixing error 480
