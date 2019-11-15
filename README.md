@@ -33,6 +33,7 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 # CHANGELOG
 v0.0.3a:
    - Added a little menu before it starts operating
+   - Update: forgot to add an exit option, so here it is
    
 v0.0.2b:
    - Cleans up fonts from the main folder and copy/moves them to CustomFont.bak
