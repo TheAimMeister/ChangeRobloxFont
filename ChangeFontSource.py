@@ -1,19 +1,26 @@
 import os, shutil, sys, time
 from os import listdir, walk
 
-pid = str(os.getpid())
-pidfile = "ChangeFont.pid"
+#Prevent from running twice
+pidfile = 'ChangeFont.pid'
 if os.path.isfile(pidfile):
-    print(f"{pidfile} already exists, exiting")
+    print('Already running, exiting')
     time.sleep(2)
     sys.exit(1)
 
-open(pidfile, 'w').write(pid)
+open(pidfile, 'w').write(str(os.getpid()))
 
+#actual code
 try:
     def CustomFontDict():
+        if not os.path.isdir(f'{os.getcwd()}/CustomFont.bak'):
+            os.mkdir('CustomFont.bak')
         onlyfiles = [f for f in listdir(os.getcwd()) if f.endswith('.ttf')]
-        return onlyfiles
+        if onlyfiles:
+            for i in onlyfiles:
+                print(i)
+                shutil.copy(f'{os.getcwd()}/{i}', f'{os.getcwd()}/CustomFont.bak')
+                os.unlink(i)
 
     def GetRobloxVersion():
         rootDict = f'{os.getenv("LOCALAPPDATA")}/Roblox/Versions'
@@ -39,16 +46,21 @@ try:
         return fonts, rootDict
 
     def ChangeFontsPF():
-        CustomFont = CustomFontDict()
+        CustomFont = [f for f in listdir(f'{os.getcwd()}/CustomFont.bak') if f.endswith('.ttf')]
+        print(CustomFont)
         RobloxFont, rootDict = GetFonts()
         for i in RobloxFont:
             if i in CustomFont:
                 print(f'Replacing font: {i}')
-                shutil.copy(f'{os.getcwd()}/{i}', f'{rootDict}')
+                shutil.copy(f'{os.getcwd()}/CustomFont.bak/{i}', f'{rootDict}')
 
+    CustomFontDict()
     ChangeFontsPF()
-    print('Operation done, press "return" to close')
-    input()
+except OSError as e:
+    print(f'Error: {e}')
+    os.unlink(pidfile)
+    sys.exit(1)
 finally:
+    input('Operation done, press "return" to close.')
     os.unlink(pidfile)
     sys.exit(0)
