@@ -47,7 +47,6 @@ try:
 
     def ChangeFontsPF():
         CustomFont = [f for f in listdir(f'{os.getcwd()}/CustomFont.bak') if f.endswith('.ttf')]
-        print(CustomFont)
         RobloxFont, rootDict = GetFonts()
         for i in RobloxFont:
             if i in CustomFont:
