@@ -36,6 +36,7 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 v0.0.4a:
  - Rewritten the code, should gain a bit performance and should be easier to read
  - A better way of handling the .pid file, if for some reason you might crash the program you can delete the created 'ChangeFont.pid' safely
+
 v0.0.3a:
    - Added a little menu before it starts operating
    - Update: forgot to add an exit option, so here it is
