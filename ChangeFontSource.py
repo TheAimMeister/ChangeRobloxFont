@@ -28,6 +28,9 @@ class Flander: #Needed a name here, shut.
     def __init__(self, mode, otype):
         self.mode = mode
         self.otype = otype
+        if not os.path.isdir(self.rootDict):
+            print("Roblox not found.")
+            return
         self.retrieveVersion()
         self.moveCustomFontToBak()
         self.backupOrigF()
