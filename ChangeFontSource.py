@@ -3,15 +3,91 @@ from os import listdir, walk
 
 #Prevent from running twice
 pidfile = 'ChangeFont.pid'
-if os.path.isfile(pidfile):
-    print('Already running, exiting')
-    time.sleep(2)
-    sys.exit(1)
+def is_running():
+    try:
+        with open(pidfile) as f:
+            pid = int(next(f))
+        return os.kill(pid, 0)
+    except Exception:
+        return False
 
-with open(pidfile, 'w') as e:
-    e.write(str(os.getpid()))
+if __name__ == '__main__':
+    if is_running():
+        print('Program is already running.')
+        sys.exit(0)
+    with open(pidfile, 'w') as f:
+        f.write(f'{os.getpid()}\n')
 
-#Mode definition
+#Class (might be better for code cleanup, idk...)
+class Flander: #Needed a name here, shut.
+    CustomFontBak = f'{os.getcwd()}/CustomFont.bak'
+    OriginalFontBak = f'{os.getcwd()}/OriginalRobloxFont.bak'
+    rootDict = f'{os.getenv("LOCALAPPDATA")}/Roblox/Versions'
+    newFiles = [f for f in listdir(os.getcwd()) if f.endswith('.ttf' or '.otf')]
+
+    def __init__(self, mode, otype):
+        self.mode = mode
+        self.otype = otype
+        self.retrieveVersion()
+        self.moveCustomFontToBak()
+        self.backupOrigF()
+        if self.mode and self.otype == "standard":
+            self.standardMode()
+        elif self.mode and self.otype == "all":
+            self.allMode()
+            self.standardMode()
+        else:
+            self.restoreMode()
+        return
+
+    def retrieveVersion(self):
+        for (dirpath, dirnames, filenames) in walk(self.rootDict):
+            if "RobloxPlayerBeta.exe" in filenames:
+                self.rootDict = f'{dirpath}/content/fonts'
+                break
+
+    def moveCustomFontToBak(self):
+        if not os.path.isdir(self.CustomFontBak): os.mkdir('CustomFont.bak')
+        if self.newFiles:
+            for i in self.newFiles:
+                print(f'Moving custom font "{i}" to CustomFont.bak')
+                shutil.copy(f'{os.getcwd()}/{i}', self.CustomFontBak)
+                os.unlink(i)
+            else:
+                print('Done moving custom font to CustomFont.bak')
+
+    def backupOrigF(self):
+        print("Backup function called for original Roblox fonts")
+        if not os.path.isdir(self.OriginalFontBak): os.mkdir('OriginalRobloxFont.bak')
+        for i in listdir(self.rootDict):
+            if i not in listdir(self.OriginalFontBak) and i.endswith('.ttf' or '.otf'):
+                print(f'Creating backup of font: {i}')
+                shutil.copy(f'{self.rootDict}/{i}', self.OriginalFontBak)
+            else:
+                print(f'Skipping {i}, already backed up.')
+
+    def standardMode(self):
+        for i in listdir(self.CustomFontBak):
+            if i in listdir(self.rootDict):
+                print(f'Replacing font: {i}')
+                shutil.copy(f'{self.CustomFontBak}/{i}', f'{self.rootDict}')
+
+    def restoreMode(self):
+        print('Intiated restore mode')
+        for i in listdir(self.OriginalFontBak):
+            if i in listdir(self.rootDict):
+                print(f'Restoring: {i}')
+                shutil.copy(f'{self.OriginalFontBak}/{i}', self.rootDict)
+
+    def allMode(self):
+        for i in listdir(self.rootDict):
+            if i not in listdir(self.CustomFontBak) and i.endswith('.ttf' or '.otf'):
+                print(f'Creating file: {i}')
+                shutil.copy(f'{self.CustomFontBak}/arial.ttf', f'{self.CustomFontBak}/{i}')
+            else:
+                print(f'Skipping file: {i}')
+
+#Input String
 PrStr = """
 Please type in the mode:
 Standard | Standard mode, replaces only the found custom fonts.
@@ -23,109 +99,18 @@ Exit     | Exit the program.
 
 > """
 
-def requestMode():
+#call scripts
+UIP = ''
+while UIP.lower() not in ["standard", "all", "restore", "exit"]:
     os.system('cls' if os.name == 'nt' else 'clear')
-    while True:
-        mode = input(PrStr)
-        if mode.lower() in ["standard", "all", "restore", "exit"]:
-            break
-        else:
-            print('Enter a valid mode, refreshing screen.')
-            time.sleep(2)
-            os.system('cls' if os.name == 'nt' else 'clear')
-    return mode
+    UIP = input(PrStr).lower()
 
-#actual code
-try:
-    def CustomFontDict():
-        onlyfiles = [f for f in listdir(os.getcwd()) if f.endswith('.ttf') or f.endswith('.otf')]
-        if not os.path.isdir(f'{os.getcwd()}/CustomFont.bak'): os.mkdir('CustomFont.bak')
-        if onlyfiles:
-            for i in onlyfiles:
-                print(f'Moving custom font "{i}" to CustomFont.bak')
-                shutil.copy(f'{os.getcwd()}/{i}', f'{os.getcwd()}/CustomFont.bak')
-                os.unlink(i)
-            else:
-                print('Done moving custom font to CustomFont.bak')
-
-    def GetRobloxVersion(mode=False):
-        rootDict = f'{os.getenv("LOCALAPPDATA")}/Roblox/Versions'
-        for (dirpath, dirnames, filenames) in walk(rootDict):
-            if "RobloxPlayerBeta.exe" in filenames:
-                rootDict = dirpath
-                if not mode:
-                    break
-                else:
-                    rootDict += '/content/fonts'
-                    break
-        if not mode: print(f'Found Roblox version at:\n{rootDict}')
-        return rootDict
-
-    def GetFonts():
-        rootDict = f'{GetRobloxVersion()}/content/fonts'
-        fonts = [f for f in listdir(rootDict) if f.endswith('.ttf') or f.endswith('.otf')]
-        print('Creating backup of original fonts.')
-        if not os.path.isdir(f'{os.getcwd()}/OriginalRobloxFont.bak'): os.mkdir('OriginalRobloxFont.bak')
-        for i in fonts:
-            if i in listdir(f'{os.getcwd()}/OriginalRobloxFont.bak'):
-                print(f'Skipping {i}, already backed up.')
-                continue
-            print(f'Creating backup of font: {i}')
-            shutil.copy(f'{rootDict}/{i}', f'{os.getcwd()}/OriginalRobloxFont.bak')
-        return fonts, rootDict
-
-    def ChangeFontsPF():
-        if modeReturn(requestMode()) == "exit":
-            return
-        else:
-            CustomFont = [f for f in listdir(f'{os.getcwd()}/CustomFont.bak') if f.endswith('.ttf') or f.endswith('otf')]
-            RobloxFont, rootDict = GetFonts()
-            print("End of backup process")
-            for i in RobloxFont:
-                if i in CustomFont:
-                    print(f'Replacing font: {i}')
-                    shutil.copy(f'{os.getcwd()}/CustomFont.bak/{i}', f'{rootDict}')
-            else:
-                input('Operation done, press "return" to close.')
-
-    def restoreMode():
-        print('Initiated restore mode')
-        origDict = [f for f in listdir(f'{os.getcwd()}/OriginalRobloxFont.bak') if f.endswith('.ttf') or f.endswith('otf')]
-        rootDict = [f for f in listdir(GetRobloxVersion("Restore")) if f.endswith('.ttf') or f.endswith('otf')]
-        for i in origDict:
-            if i in rootDict:
-                print(f'Restoring: {i}')
-                shutil.copy(f'{os.getcwd()}/OriginalRobloxFont.bak/{i}', GetRobloxVersion("Restore"))
-        return False
-
-    def allMode():
-        rootDict = [f for f in listdir(f'{os.getcwd()}/OriginalRobloxFont.bak') if f.endswith('.ttf') or f.endswith('otf')]
-        cusFonts = [f for f in listdir(f'{os.getcwd()}/CustomFont.bak') if f.endswith('.ttf') or f.endswith('otf')]
-        for i in rootDict:
-            if i not in cusFonts:
-                print(f'Creating file: {i}')
-                shutil.copy(f'{os.getcwd()}/CustomFont.bak/arial.ttf', f'{os.getcwd()}/CustomFont.bak/{i}')
-            else:
-                print(f'Skipping file: {i}')
-        return True
-
-    def modeReturn(mode='standard'):
-        if mode.lower() == 'standard':
-            return True
-        elif mode.lower() == 'all':
-            response = allMode()
-        elif mode.lower() == 'exit':
-            response = mode
-        else:
-            response = restoreMode()
-        return response
-
-    CustomFontDict()
-    ChangeFontsPF()
-except OSError as e:
-    print(f'Error: {e}')
-    os.unlink(pidfile)
-    sys.exit(1)
-finally:
-    os.unlink(pidfile)
-    sys.exit(0)
+os.system('cls' if os.name == 'nt' else 'clear')
+if UIP in ["standard", "all"]:
+    Flander(True, UIP)
+elif UIP in ["restore"]:
+    Flander(False, UIP)
+if UIP not in "exit":
+    input("Operation done, press 'Return' to close")
+os.unlink(pidfile)
+sys.exit(0)
