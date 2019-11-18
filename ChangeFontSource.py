@@ -41,6 +41,7 @@ class Flander: #Needed a name here, shut.
             self.standardMode()
         else:
             self.restoreMode()
+        input("Operation done, press 'Return' to close")
         return
 
     def retrieveVersion(self):
@@ -113,7 +114,6 @@ if UIP in ["standard", "all"]:
     Flander(True, UIP)
 elif UIP in ["restore"]:
     Flander(False, UIP)
-if UIP not in "exit":
-    input("Operation done, press 'Return' to close")
+
 os.unlink(pidfile)
 sys.exit(0)
