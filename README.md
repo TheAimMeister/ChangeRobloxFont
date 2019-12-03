@@ -6,7 +6,11 @@ Alternatively, you can also change it for Phantom Forces first, as the program w
 a Python package called "PyInstaller" has been used to create the .exe file
 
 # Requirements
-A windows operating system, MacOs or Linux may not work
+Windows
+   - can run the .exe without python installed; Or one can install python to run the python file instead.
+   - the .exe file may generate a windows safescreen warning as there's no digital signature
+
+note: I don't own a MacOs or Linux, so I have no clue if they're compatible.
 
 # Current Errors
 Error code 480 (description unknown at this point, halting a fix.)
