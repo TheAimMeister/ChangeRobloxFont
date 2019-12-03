@@ -25,6 +25,7 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
    - SourceSansPro-Bold.ttf
    - SourceSansPro-Light.ttf
    - SourceSansPro-Regular.ttf
+   - Inconsolata-Regular.ttf
 
 3.1 If the font consists of only one .ttf file,
         create copies and rename them to the names listed at step 3
