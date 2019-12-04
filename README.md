@@ -38,6 +38,11 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 
 # CHANGELOG
+v0.0.5a:
+ - Rewritten code again
+ - Output now goes to console.txt
+ - Added async to speed up things a bit as well for stability
+
 v0.0.4a:
  - Rewritten the code, should gain a bit performance and should be easier to read
  - A better way of handling the .pid file, if for some reason you might crash the program you can delete the created 'ChangeFont.pid' safely
