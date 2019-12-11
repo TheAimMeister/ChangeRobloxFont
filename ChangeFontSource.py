@@ -90,7 +90,7 @@ class Flander():
                 await asyncio.sleep(0.001)
 
     async def replaceFace(self):
-        if not "face.png" is listdir(os.getcwd()):
+        if not "face.png" in listdir(os.getcwd()):
             return
         shutil.copy(f'{os.getcwd()}/face.png', f'{self.rootDict[:-5]}textures')
 
