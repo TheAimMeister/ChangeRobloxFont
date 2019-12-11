@@ -38,6 +38,9 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 
 # CHANGELOG
+Hotfix from v0.0.5a:
+ - Fixed a typo that caused the face.png not to change (didn't threw an error when testing; Henche why the hotfix is late.)
+
 v0.0.5a:
  - Rewritten code again
  - Output now goes to console.txt
