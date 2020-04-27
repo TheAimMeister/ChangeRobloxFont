@@ -23,15 +23,12 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 2. Place the font(s) and the .exe in a directory
 
-3. Check if the fonts names are, and if not rename them to:
-   - arial.ttf
-   - arialdb.ttf
-   - SourceSansPro-Bold.ttf
-   - SourceSansPro-Light.ttf
-   - SourceSansPro-Regular.ttf
-   - Inconsolata-Regular.ttf
+3. Check if the fonts names are, and if not rename them to(.otf extension will also work):
+   - Regular.ttf
+   - Bold.ttf
+   - Light.ttf
 
-3.1 If the font consists of only one .ttf file,
+3.1 If the font consists of only one .ttf or .otf file,
         create copies and rename them to the names listed at step 3
 
 4. Run the .exe
@@ -42,6 +39,7 @@ Changes from v0.0.5:
 - Reduced the amount of I/O calls
 - Slight improvement in performance
 - Removed "All" operation, this is now become the standard operation
+- No longer need arial.ttf, instead you need to use Regular.ttf, Bold.ttf, Light.ttf
 
 Hotfix from v0.0.5a:
  - Fixed a typo that caused the face.png not to change (didn't threw an error when testing; Henche why the hotfix is late.)
