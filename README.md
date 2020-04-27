@@ -38,6 +38,11 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 
 # CHANGELOG
+Changes from v0.0.5:
+- Reduced the amount of I/O calls
+- Slight improvement in performance
+- Removed "All" operation, this is now become the standard operation
+
 Hotfix from v0.0.5a:
  - Fixed a typo that caused the face.png not to change (didn't threw an error when testing; Henche why the hotfix is late.)
 
