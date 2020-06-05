@@ -19,7 +19,7 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 # How to use:
 1. Download a font
 
-2. Place the font(s) and the .exe in a directory
+2. Place the font(s) and the .exe or .py in a directory
 
 3. Check if the fonts names are, and if not rename them to(.otf extension will also work):
    - arial.ttf
