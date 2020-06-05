@@ -1,19 +1,17 @@
-# ChangeRobloxFont
-A little script that I wrote in python 3.7.4 that runs a code that replaces the font automatically.
+# Roblox Font Changer
+A little script that I wrote in python 3.8.3 that runs a code that replaces Roblox's font automatically each time I open the file.
 I mainly made it for Phantom Forces, but you can use every font used within the roblox directory.
 Alternatively, you can also change it for Phantom Forces first, as the program will create a backup of Roblox's original font
 
 a Python package called "PyInstaller" has been used to create the .exe file
 
 # Requirements
-Windows
+Windows only
    - can run the .exe without python installed; Or one can install python to run the python file instead.
    - the .exe file may generate a windows safescreen warning as there's no digital signature
 
-note: I don't own a MacOs or Linux, so I have no clue if they're compatible.
-
 # Current Errors
-Error code 480 (description unknown at this point, halting a fix.)
+None
 
 # Download the correct version at:
 https://github.com/TheAimMeister/ChangeRobloxFont/releases
@@ -24,17 +22,22 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 2. Place the font(s) and the .exe in a directory
 
 3. Check if the fonts names are, and if not rename them to(.otf extension will also work):
-   - Regular.ttf
-   - Bold.ttf
-   - Light.ttf
+   - arial.ttf
 
-3.1 If the font consists of only one .ttf or .otf file,
-        create copies and rename them to the names listed at step 3
-
-4. Run the .exe
+4. Run the .exe or the .py file
 
 
 # CHANGELOG
+Changes from v0.0.6:
+- Removed the class operator
+- No longer uses asynchronous functions
+- Makes use of logging
+- Back to requiring arial.ttf (sorry)
+- Moved the time.sleep to it's own function and it's called after each shutil.copy()
+- Script now waits for shutil.copy() to be completed
+- Removed the requirement for user input
+- Restoring the default font function now has it's own file
+
 Changes from v0.0.5:
 - Reduced the amount of I/O calls
 - Slight improvement in performance
