@@ -28,6 +28,14 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 
 
 # CHANGELOG
+Changes from v0.0.7a:
+-Local fonts are now saved in memory
+-Script will now ask which font to use if multiple are found
+-No longer requires arial.ttf
+
+Be sure to use any a font with at least regular in the name
+\* I forgot to mention some stuff and update this.., oopsie.
+
 Changes from v0.0.6:
 - Removed the class operator
 - No longer uses asynchronous functions
