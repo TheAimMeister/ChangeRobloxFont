@@ -22,7 +22,7 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 2. Place the font(s) and the .exe or .py in a directory
 
 3. Check if the fonts names are, and if not rename them to(.otf extension will also work):
-   - arial.ttf
+   - regular.ttf
 
 4. Run the .exe or the .py file
 
@@ -31,10 +31,10 @@ https://github.com/TheAimMeister/ChangeRobloxFont/releases
 Changes from v0.0.7a:
 - Local fonts are now saved in memory
 - Script will now ask which font to use if multiple are found
-- No longer requires arial.ttf
+- Now requires regular.ttf instead of arial.ttf, which will be used if a font is not found
 
 Be sure to use any a font with at least regular in the name
-\* I forgot to mention some stuff and update this.., oopsie.
+I forgot to mention some stuff and update this.., oopsie.
 
 Changes from v0.0.6:
 - Removed the class operator
