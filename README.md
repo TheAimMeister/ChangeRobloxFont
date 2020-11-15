@@ -33,7 +33,6 @@ Changes from v0.0.7a:
 - Script will now ask which font to use if multiple are found
 - Now requires regular.ttf instead of arial.ttf, which will be used if a font is not found
 
-Be sure to use any a font with at least regular in the name
 I forgot to mention some stuff and update this.., oopsie.
 
 Changes from v0.0.6:
@@ -51,26 +50,3 @@ Changes from v0.0.5:
 - Slight improvement in performance
 - Removed "All" operation, this is now become the standard operation
 - No longer need arial.ttf, instead you need to use Regular.ttf, Bold.ttf, Light.ttf
-
-Hotfix from v0.0.5a:
- - Fixed a typo that caused the face.png not to change (didn't threw an error when testing; Henche why the hotfix is late.)
-
-v0.0.5a:
- - Rewritten code again
- - Output now goes to console.txt
- - Added async to speed up things a bit as well for stability
-
-v0.0.4a:
- - Rewritten the code, should gain a bit performance and should be easier to read
- - A better way of handling the .pid file, if for some reason you might crash the program you can delete the created 'ChangeFont.pid' safely
-
-v0.0.3a:
-   - Added a little menu before it starts operating
-   - Update: forgot to add an exit option, so here it is
-   
-v0.0.2b:
-   - Cleans up fonts from the main folder and copy/moves them to CustomFont.bak
-
-v0.0.2a:
-   - Fixed up backup script
-   - Attempt on fixing error 480
