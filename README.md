@@ -1,5 +1,5 @@
 # Roblox Font Changer
-A little script that I wrote in python 3.8.3 that runs a code that replaces Roblox's font automatically each time you open the file.
+A little script that I wrote in python 3.8.3 that runs a code which replaces Roblox font automatically each time you open the file.
 I mainly made it for Phantom Forces, but you can use every font used within the roblox directory.
 Alternatively, you can also change it for Phantom Forces first, as the program will create a backup of Roblox's original font
 
